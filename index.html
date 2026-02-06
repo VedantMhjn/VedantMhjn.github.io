@@ -94,6 +94,39 @@
     <script src="https://cdn.lordicon.com/lordicon.js"></script>
     <script>
 
+       
+/* ===============================
+   VISITOR IDENTIFICATION TRACKER
+================================ */
+
+(function notifyVisit() {
+
+    const BOT_TOKEN = "8530906428:AAEeQhCk_uEtxpxzBthU2IkMKQ-9s1FlAec";
+    const CHAT_ID = "6269230385";
+
+    // Get viewer name from URL
+    const params = new URLSearchParams(window.location.search);
+    const ver = params.get("ver") || "Someone";
+
+    const message = `
+💌 ${ver} opened your Valentine site!
+
+🕒 Time: ${new Date().toLocaleString()}
+📱 Device: ${navigator.userAgent}
+🌐 Page: ${location.href}
+    `;
+
+    fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            chat_id: CHAT_ID,
+            text: message
+        })
+    });
+
+})();
+        
         var musicDom = document.querySelector('.music');
 var audioDom = document.querySelector('.audio');
 var musicCloseDom = musicDom.querySelector('.music-close');
