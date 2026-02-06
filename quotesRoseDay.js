@@ -8,6 +8,7 @@ const roseDay = [
     You are a Rose of My Smile,
     You are a Rose of My Life...
     HAPPY ROSE DAY!`,
+`I like to dream about mirrors, That there is a mirror world somewhere A little like ours but different at the same time And you and I are different But we are together. I like to believe whatever world we are in We are in love And together.`,
     `I am not great at big romantic statements, 
   but I do know that choosing you, 
   every day in small and quiet ways, 
