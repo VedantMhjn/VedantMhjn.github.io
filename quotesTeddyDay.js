@@ -1,0 +1,51 @@
+const quotesDiv = document.querySelector(".quotes");
+const fpName = document.querySelector("#fpname");
+const spName = document.querySelector("#spname");
+
+const teddyDayQuotes = [
+  `Just like a teddy bear, you are soft and warm,
+You bring comfort to my heart and calm every storm.
+Happy Teddy Day, my love!`,
+  `Just like a teddy bear, you are my comfort zone,
+With you, I never feel alone.
+Happy Teddy Day, sweetheart!`,
+  `This is not meant to be a grand gesture. 
+  Just something soft you can hold when you need comfort, 
+  and a small reminder that someone out there 
+  thinks of you more often than you realize.`
+];
+
+fetch('config.json')
+  .then(response => response.json())
+  .then(config => {
+    // Set names from configuration.
+    fpName.innerText = config.fpName;
+    spName.innerText = config.spName;
+
+    // Update Instagram profile link and name.
+    const instagramProfileLink = document.getElementById('instagramProfileLink');
+    const instagramProfileNameElement = document.getElementById('instagramProfileName');
+    instagramProfileLink.href = `https://instagram.com/${config.instagramUsername}`;
+    instagramProfileNameElement.textContent = config.instagramProfileName;
+    
+    const quotesCount = teddyDayQuotes.length;
+
+    for (let i = 0; i < quotesCount; i++) {
+      const link = document.createElement('a');
+      link.setAttribute('href', 'card.html?source=teddy');
+      const para = document.createElement("p");
+      para.classList.add("quote");
+      para.innerText = teddyDayQuotes[i];
+      link.appendChild(para);
+      quotesDiv.appendChild(link);
+    }
+
+    const quoteDivs = document.querySelectorAll(".quote");
+    quoteDivs.forEach(quote => {
+      quote.addEventListener('click', function (e) {
+        const chosenQuote = e.target.innerText;
+        localStorage.setItem("chosenQuote", chosenQuote);
+      });
+    });
+  })
+  .catch(error => console.error('Error loading config:', error));
